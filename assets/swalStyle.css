@@ -1,0 +1,37 @@
+.swal2-popup.swal2-modal.swal2-show {
+    color: white;
+    background: #000;
+    border: 3px solid #555;
+}
+
+.swal2-input {
+    max-width: none !important;
+}
+
+.swal2-confirm.swal2-styled {
+    background: white !important;
+    color: black !important;
+}
+
+.swal2-radio {
+    background: #000 !important;
+}
+
+.layerDeleteBtn {
+    position: relative; 
+    float: right !important;
+    padding: 0.2rem 0.63rem !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    margin-right: .6rem !important;
+    color: white;
+}
+
+.layerDeleteBtn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.layerListing {
+    margin-bottom: 1rem !important;
+    cursor: pointer !important;
+}
