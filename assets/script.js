@@ -3,7 +3,8 @@ let bodyLayer = layer;
 let Rarity;
 let LayerAssetsCount = 0;
 let rarities = [];
-const baseURL = "https://nftdynamo.herokuapp.com"
+// const baseURL = "https://nftdynamo.herokuapp.com"
+const baseURL = "http://localhost:3010"
 
 let session = {
     TotalAssetsCount: 0,
@@ -203,14 +204,25 @@ const activeLayer = (id) => {
 
 const preview = async () => {
     try {
-        if (session.TotalAssetsCount < 2) {
+        if (session.TotalAssetsCount < 1) {
             Swal.fire("error", "More assets are required to generate a preview")
         } else {
+            const data = {
+                "description": descriptionFieldVal,
+                "width": 300,
+                "height": 300,
+                "editionSize": collectionSizeFieldVal,
+                "layers": session["layers"],
+                "rarities": rarities
+            }
+            console.log(data);
             const payload = await fetch(`${baseURL}/preview`, {
-                method: 'GET', // or 'PUT'
+                method: 'POST', // or 'PUT'
                 headers: {
+                    'Content-Type': 'application/json',
                     sesID: session.sesID
                 },
+                body: JSON.stringify(data),
             });
             const ress = await payload.json();
             console.log(ress);
