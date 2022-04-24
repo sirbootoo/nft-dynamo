@@ -270,7 +270,7 @@ const generateNFTs = async () => {
             Swal.fire("error", "Please specify an email the collection will be sent to.");
             return;
         }
-        if (session.TotalAssetsCount > 5) {
+        if (session.TotalAssetsCount < 4) {
             Swal.fire("error", "More than 4 assets are required to generate a collection");
             return;
         } else {
