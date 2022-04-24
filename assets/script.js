@@ -290,7 +290,7 @@ const generateNFTs = async () => {
             generationHTTPRequest(obj);
             localStorage.removeItem("sesID");
             console.log(window.top.location)
-            window.top.location = window.top.location
+            document.location.reload();
 
             return true;
         }
