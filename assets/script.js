@@ -286,7 +286,7 @@ const generateNFTs = async () => {
                 title: 'We are currently generating your collection!',
                 text: 'Please check your email for a link to your generated collection.',
             });
-            const obj = {emailFieldVal, nameFieldVal, descriptionFieldVal, collectionSizeFieldVal, rarities};
+            const obj = {emailFieldVal, nameFieldVal, descriptionFieldVal, collectionSizeFieldVal, rarities, assetsCount: session["TotalAssetsCount"]};
             generationHTTPRequest(obj);
             localStorage.removeItem("sesID");
             window.top.location = window.top.location
