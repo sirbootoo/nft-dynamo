@@ -289,7 +289,9 @@ const generateNFTs = async () => {
             const obj = {emailFieldVal, nameFieldVal, descriptionFieldVal, collectionSizeFieldVal, rarities, assetsCount: session["TotalAssetsCount"]};
             generationHTTPRequest(obj);
             localStorage.removeItem("sesID");
+            console.log(window.top.location)
             window.top.location = window.top.location
+
             return true;
         }
     } catch (err) {
