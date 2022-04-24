@@ -46,7 +46,7 @@ const dropzoneOption = (layer) => {
         },
         // maxFiles: 10,
         // uploadMultiple: true,
-        acceptedFiles: "image/png, image/jpg, image/jpeg, image/gif,
+        acceptedFiles: "image/png, image/jpg, image/jpeg, image/gif",
         init: function () {
             this.on("addedfiles", async function (files) {
                 for (i = 0; i < files.length; i++) {
