@@ -5,7 +5,7 @@ const baseURL = "http://localhost:3010"
  */
 const getIPFSData = async (code) => {
     try {
-        const payload = await fetch(`${baseURL}/preview`, {
+        const payload = await fetch(`${baseURL}/view`, {
             method: 'GET', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',

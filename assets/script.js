@@ -1,3 +1,19 @@
+console.log(`
+    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+    ░░░░░░░░██░░░░░██░███████░██████████░░░░░██████░░░██░░░░██░██░░░░░██░░░███░░░███░░███░░░██████░░░░░
+    ░░░░░░░░████░░░██░██░░░░░░░░░░██░░░░░░░░░██░░░██░░██░░░░██░████░░░██░░██░██░░████████░░██░░░░██░░░░
+    ░░░░░░░░██░░██░██░██░░░░░░░░░░██░░░░░░░░░██░░░░██░░██░░██░░██░██░░██░██░░░██░██░██░██░██░░░░░░██░░░
+    ░░░░░░░░██░░░████░██████░░░░░░██░░░░░░░░░██░░░░██░░░░██░░░░██░░░█░██░███████░██░██░██░██░░░░░░██░░░
+    ░░░░░░░░██░░░░░██░██░░░░░░░░░░██░░░░░░░░░██░░░██░░░░░██░░░░██░░░░███░██░░░██░██░░░░██░░██░░░░██░░░░
+    ░░░░░░░░██░░░░░██░██░░░░░░░░░░██░░░░░░░░░██████░░░░░░██░░░░██░░░░░██░██░░░██░██░░░░██░░░██████░░░░░
+    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░`);
+
+
+
 let layer = "background";
 let bodyLayer = layer;
 let Rarity;
@@ -266,33 +282,43 @@ const generateNFTs = async () => {
                 Swal.fire("error", "Please specify Collection Size");
                 return;
             }
-            const data = {
-                email: emailFieldVal,
-                name: nameFieldVal,
-                "description": descriptionFieldVal,
-                "width": 300,
-                "height": 300,
-                "editionSize": collectionSizeFieldVal,
-                "layers": session["layers"],
-                "rarities": rarities
-            }
-            console.log(data);
-            const payload = await fetch(`${baseURL}/generate`, {
-                method: 'POST', // or 'PUT'
-                headers: {
-                    'Content-Type': 'application/json',
-                    sesID: session.sesID
-                },
-                body: JSON.stringify(data),
+            Swal.fire({
+                title: 'We are currently generating your collection!',
+                text: 'Please check your email for a link to your generated collection.',
             });
+            const obj = {emailFieldVal, nameFieldVal, descriptionFieldVal, collectionSizeFieldVal, rarities};
+            generationHTTPRequest(obj);
+            localStorage.removeItem("sesID");
+            window.top.location = window.top.location
             const ress = await payload.json();
-            console.log(ress);
             return true;
         }
     } catch (err) {
         Swal.fire("Oops!!", "We messed up somewhere, no worries we are fixing it.");
         console.log(err, "<==========");
     }
+}
+
+const generationHTTPRequest = async (obj) => {
+    const {emailFieldVal, nameFieldVal, descriptionFieldVal, collectionSizeFieldVal, rarities} = obj;
+    const data = {
+        email: emailFieldVal,
+        name: nameFieldVal,
+        "description": descriptionFieldVal,
+        "width": 300,
+        "height": 300,
+        "editionSize": collectionSizeFieldVal,
+        "layers": session["layers"],
+        "rarities": rarities
+    }
+    const payload = await fetch(`${baseURL}/generate`, {
+        method: 'POST', // or 'PUT'
+        headers: {
+            'Content-Type': 'application/json',
+            sesID: session.sesID
+        },
+        body: JSON.stringify(data),
+    });
 }
 
 
