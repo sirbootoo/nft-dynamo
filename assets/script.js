@@ -270,15 +270,15 @@ const generateNFTs = async () => {
             Swal.fire("error", "Please specify an email the collection will be sent to.");
             return;
         }
-        if (session.TotalAssetsCount < 4) {
-            Swal.fire("error", "More than 4 assets are required to generate a collection");
+        if (session.TotalAssetsCount < 2) {
+            Swal.fire("error", "2 or more assets are required to generate a collection");
             return;
         } else {
             if ((nameFieldVal.length < 1) || descriptionFieldVal.length < 1) {
                 Swal.fire("error", "Both Project Name and Project Descriptions are required");
                 return;
             }
-            if (collectionSizeFieldVal.length < 1 && collectionSizeFieldVal == "0") {
+            if (collectionSizeFieldVal.length < 1 || collectionSizeFieldVal == "0") {
                 Swal.fire("error", "Please specify Collection Size");
                 return;
             }
