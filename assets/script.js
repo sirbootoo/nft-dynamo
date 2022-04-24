@@ -19,8 +19,8 @@ let bodyLayer = layer;
 let Rarity;
 let LayerAssetsCount = 0;
 let rarities = [];
-// const baseURL = "https://nftdynamo.herokuapp.com"
-const baseURL = "http://localhost:3010"
+const baseURL = "https://nftdynamo.herokuapp.com"
+// const baseURL = "http://localhost:3010"
 
 let session = {
     TotalAssetsCount: 0,
