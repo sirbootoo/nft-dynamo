@@ -290,7 +290,6 @@ const generateNFTs = async () => {
             generationHTTPRequest(obj);
             localStorage.removeItem("sesID");
             window.top.location = window.top.location
-            const ress = await payload.json();
             return true;
         }
     } catch (err) {
@@ -319,6 +318,7 @@ const generationHTTPRequest = async (obj) => {
         },
         body: JSON.stringify(data),
     });
+    return payload.json();
 }
 
 
