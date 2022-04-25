@@ -62,9 +62,9 @@ const dropzoneOption = (layer) => {
                             'legendary': 'Legendary'
                         },
                         inputValidator: (value) => {
-                          if (!value) {
-                            return 'You need to choose something!'
-                          }
+                            if (!value) {
+                                return 'You need to choose something!'
+                            }
                         }
                     });
                     session["TotalAssetsCount"] += 1;
@@ -174,8 +174,8 @@ const deleteLayer = (layer) => {
     console.log(layer, "<=========== In here");
     const el = document.querySelector(".layerListing[the-id='" + layer + "']");
     const idAttr = el.getAttribute("id");
-    const box = document.getElementById(layer+"LayerUpload");
-    if(idAttr == "active"){
+    const box = document.getElementById(layer + "LayerUpload");
+    if (idAttr == "active") {
         clickLayer("background");
     }
     console.log(idAttr);
@@ -282,15 +282,16 @@ const generateNFTs = async () => {
                 Swal.fire("error", "Please specify Collection Size");
                 return;
             }
+            const obj = { emailFieldVal, nameFieldVal, descriptionFieldVal, collectionSizeFieldVal, rarities, assetsCount: session["TotalAssetsCount"] };
+            generationHTTPRequest(obj);
             Swal.fire({
                 title: 'We are currently generating your collection!',
                 text: 'Please check your email for a link to your generated collection.',
+            }).then(x => {
+                localStorage.removeItem("sesID");
+                console.log(window.top.location)
+                document.location.reload();
             });
-            const obj = {emailFieldVal, nameFieldVal, descriptionFieldVal, collectionSizeFieldVal, rarities, assetsCount: session["TotalAssetsCount"]};
-            generationHTTPRequest(obj);
-            localStorage.removeItem("sesID");
-            console.log(window.top.location)
-            document.location.reload();
 
             return true;
         }
@@ -301,7 +302,7 @@ const generateNFTs = async () => {
 }
 
 const generationHTTPRequest = async (obj) => {
-    const {emailFieldVal, nameFieldVal, descriptionFieldVal, collectionSizeFieldVal, rarities} = obj;
+    const { emailFieldVal, nameFieldVal, descriptionFieldVal, collectionSizeFieldVal, rarities } = obj;
     const data = {
         email: emailFieldVal,
         name: nameFieldVal,
