@@ -302,7 +302,7 @@ const generateNFTs = async () => {
 }
 
 const generationHTTPRequest = async (obj) => {
-    const { emailFieldVal, nameFieldVal, descriptionFieldVal, collectionSizeFieldVal, rarities } = obj;
+    const { emailFieldVal, nameFieldVal, descriptionFieldVal, collectionSizeFieldVal, rarities, assetsCount } = obj;
     const data = {
         email: emailFieldVal,
         name: nameFieldVal,
@@ -311,7 +311,8 @@ const generationHTTPRequest = async (obj) => {
         "height": 300,
         "editionSize": collectionSizeFieldVal,
         "layers": session["layers"],
-        "rarities": rarities
+        "rarities": rarities,
+        assetsCount
     }
     const payload = await fetch(`${baseURL}/generate`, {
         method: 'POST', // or 'PUT'

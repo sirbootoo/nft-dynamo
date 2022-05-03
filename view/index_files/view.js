@@ -1,5 +1,5 @@
-// const baseURL = "https://nftdynamo.herokuapp.com"
-const baseURL = "http://localhost:3010"
+const baseURL = "https://nftdynamo.herokuapp.com"
+// const baseURL = "http://localhost:3010"
 /**
  * This function handles getting ipfs data from the backend service.
  */
